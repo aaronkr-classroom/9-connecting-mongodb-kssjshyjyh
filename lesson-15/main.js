@@ -66,7 +66,7 @@ app.get("/subscribers", subscribersController.getAllSubscribers2);
 // 구독 페이지를 위한 GET 라우트
 app.get("/subscribe", subscribersController.getSubscriptionPage);
 // 구독 데이터 처리를 위한 POST 라우트
-app.post("/subscriber", subscribersController.saveSubscriber);
+app.post("/subscribe", subscribersController.saveSubscriber);
 
 /**
  * Listing 11.4 (p. 169)

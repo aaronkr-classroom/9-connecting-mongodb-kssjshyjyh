@@ -54,7 +54,7 @@ var subscribers = [
 
 // 기존 데이터 제거
 
-Subscriber.deleteMany()
+subscriber.deleteMany()
   .exec()
   .then(() => {
     console.log("Subscribers deleted!");
@@ -66,7 +66,7 @@ var commands = [];
 
 subscribers.forEach(s => {
   commands.push(
-    Subscriber.create({
+    subscriber.create({
       name: s.name,
       email: s.email,
       phoneNumber: s.phoneNumber
@@ -77,10 +77,41 @@ subscribers.forEach(s => {
 // 프라미스 생성 후 로깅 작업
 
 Promise.all(commands)
-    .then((r) => {
-      console.log(JSON.stringify(r));
-      mongoose.connection.close();
-    })
-    .catch(e => {
-      console.log(`Error ${e}`);
-    });
+  .then((r) => {
+    console.log("Successfully added new users!");
+    console.log(JSON.stringify(r, null, 2));
+  })
+  .catch(e => {
+    console.log(`Error: ${e}`);
+  })
+  .finally(() => {
+    console.log("Closing DB connection.");
+    mongoose.connection.close();
+  });
+
+  // setTimeout(() => {
+  //   //프라미스 생성을 위한 구독자 객체 루프
+  //   subscribers.forEach((s) => {
+  //     commands.push(
+  //       Subscriber.create({
+  //         name: s.name,
+  //         email: s.email,
+  //         phoneNumber: s.phoneNumber,
+  //       }).then((subscriber) => {
+  //         console.log(`Created subscriber: ${subscriber.name}`);
+  //       })
+  //     );
+  //   });
+  
+  //   console.log(`${commands.length} commands created!`);
+  
+  //   Promise.all(commands)
+  //     .then((r) => {
+  //       console.log(JSON.stringify(r));
+  //       mongoose.connection.close();
+  //       console.log("Connection closed!");
+  //     })
+  //     .catch((error) => {
+  //       console.log(`Error: ${error}`);
+  //     });
+  // }, 500);

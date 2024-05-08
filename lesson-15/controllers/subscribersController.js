@@ -17,8 +17,8 @@ exports.getAllSubscribers = (req, res, next) => {
     next(); // 다음 미들웨어 함수로 진행
 
     // render the subscribers view
-    res.render("subscribers", {
-      subscribers: subscribers,
+    res.render("subscribers", { // view
+      sub: subscribers, // hompage : db
     });
   });
 };

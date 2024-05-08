@@ -12,10 +12,11 @@ const mongoose = require('mongoose'),
 // 데이터베이스 연결 설정
 
 mongoose.connect(
-  "mongodb+srv://UT-Node-kssjshyjyh:58V0jYcrpppb11my@ut-node-kssjshyjyh.ryfofzj.mongodb.net/?retryWrites=true&w=majority&appName=UT-Node-kssjshyjyh",
-  { useNewUrlParser: true}
+  "mongodb+srv://UT-Node-kssjshyjyh:58V0jYcrpppb11my@ut-node-kssjshyjyh.ryfofzj.mongodb.net/?retryWrites=true&w=majority&appName=UT-Node-kssjshyjyh", // 데이터베이스 연결 설정 Atlas
+  { useNewUrlParser: true }
 );
 
+mongoose.connection;
 
 // subscribers 배열 생성 (5개 이상)
 var subscribers = [
@@ -64,7 +65,7 @@ var commands = [];
 // 프라미스 생성을 위한 구독자 객체 루프
 
 subscribers.forEach(s => {
-  comaands.push(
+  commands.push(
     Subscriber.create({
       name: s.name,
       email: s.email,

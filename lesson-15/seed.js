@@ -72,7 +72,7 @@ subscribers.forEach(s => {
     })
   ); 
 });
-
+  
 // 프라미스 생성 후 로깅 작업
 
 Promise.all(commands)
